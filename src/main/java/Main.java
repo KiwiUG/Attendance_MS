@@ -63,13 +63,15 @@ public class Main {
 
                     break;
                     case 4:
-
+                        conn = DBUtils.connect();
+                         user_list = DBUtils.display_user(conn);
                         for (User u : user_list ) {
                             System.out.println(u.getId()+"."+" Name: " + u.getUsername());
                         }
                         break;
                 case 5:
-
+                    conn = DBUtils.connect();
+                     class_list = DBUtils.display_class(conn);
                     for (Classs c : class_list ) {
                         System.out.println(c.getId()+"."+" Name: " + c.getClassname());
                     }
