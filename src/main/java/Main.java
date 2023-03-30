@@ -43,21 +43,33 @@ public class Main {
                 case 3:
                     System.out.println("Enter your username:");
                      username = sc.next();
-                    System.out.println("Enter your password:");
-                     password = sc.next();
-                    System.out.println("Enter your classname:");
-                     classname = sc.next();
-                     user = new User(0,username,password);
-                     classobject = new Classs(0,classname);
-                    DBUtils.insert_attendence(conn,user,classobject);
+
+
+                    for (User u : user_list ) {
+                        if(username.equals(u.getUsername())){
+                            System.out.println("Enter your password:");
+                            password = sc.next();
+                               if( password.equals(u.getPassword())){
+                                   System.out.println("Enter your classname:");
+                                   classname = sc.next();
+
+                                   user = new User(0,username,password);
+                                   classobject = new Classs(0,classname);
+                                   DBUtils.insert_attendence(conn,user,classobject);
+                               }
+                        }
+                    }
+
 
                     break;
                     case 4:
+                        conn = DBUtils.connect();
                         for (User u : user_list ) {
                             System.out.println(u.getId()+"."+" Name: " + u.getUsername());
                         }
                         break;
                 case 5:
+                    conn = DBUtils.connect();
                     for (Classs c : class_list ) {
                         System.out.println(c.getId()+"."+" Name: " + c.getClassname());
                     }
